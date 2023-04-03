@@ -1,0 +1,22 @@
+•	Lista de eventos (Requisitos)
+
+Manter Clientes
+Manter Produtos
+Manter Administradores
+Manter Vendedores
+Manter Times
+Manter Campeonatos
+Controlar Login de Usuários
+Controlar Produtos em Estoque
+Controlar Vendas
+Controlar Tempo de Uso dos Computadores
+Controlar Agenda dos Campeonatos
+Controlar Tabela dos Campeonatos
+Controlar Chaveamento dos Campeonatos
+Emitir Lista de Sugestões de Jogos
+Emitir Relatório de Lucro
+Emitir Relatório de Vendas
+Emitir Produto Mais Vendido
+Emitir Time Vencedor do Campeonato
+Emitir Jogador Ativo por mais Tempo
+Emitir Jogo mais Jogado no Mês

@@ -1,0 +1,52 @@
+FAZENDO AGREGAÇÃO ENTRE COLEÇÕES (JOIN)
+
+MOSTRA COLEÇÃO CLIENTE E SEU CONTATO
+
+db.cliente.aggregate( [
+   {
+     $lookup:
+       {
+         from: "contato",
+         localField: "_id",
+         foreignField: "_id",
+         as: "clientes_contato"
+       }
+  }
+] )
+
+MOSTRA COLEÇÃO CLIENTE E SEU ENDEREÇO
+
+db.cliente.aggregate( [
+   {
+     $lookup:
+       {
+         from: "endereco",
+         localField: "_id",
+         foreignField: "_id",
+         as: "clientes_endereco"
+       }
+  }
+] )
+
+MOSTRA COLEÇÃO CLIENTE, SEU CONTATO E SEU ENDEREÇO
+
+db.cliente.aggregate( [
+   {
+     $lookup:
+       {
+         from: "contato",
+         localField: "_id",
+         foreignField: "_id",
+         as: "cliente_contato"
+       }
+    },
+    {
+      $lookup:
+       {
+         from: "endereco",
+         localField: "_id",
+         foreignField: "_id",
+         as: "cliente_endereco",
+       }
+    }
+] )

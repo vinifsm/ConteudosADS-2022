@@ -1,0 +1,21 @@
+1 - Através de processos independentes e subprocessos. O problema é que o uso de processos no desenvolvimento de aplicações concorrentes demanda consumo de diversos recursos do sistema. Sempre que um novo processo é criado, o sistema deve alocar recursos para cada processo, consumindo tempo de processador neste trabalho. No caso do término do processo, o sistema dispensa tempo para desalocar recursos previamente alocados.
+Outro problema a ser considerado é quanto ao compartilhamento do espaço de endereçamento. Como cada processo possui seu próprio espaço de endereçamento, a comunicação entre processos torna-se difícil e lenta, pois utiliza mecanismos como pipes, sinais, semáforos, memória compartilhada ou troca de mensagem.
+
+2 - Ambiente multithread nada mais é que um local, onde cada processo possa responder diversas solicitações de forma simultaneamente, tendo como vantagem a divisão de tarefas em várias tarefas menores denominas thread ou sub-rotinas, que são controladas pelo processador e vistas como processos. 
+
+3 - Unidade de alocação de recursos faz com que o processador seleciona um processo para a execução dos mesmos, enquanto a unidade de escalonamento permite com que os threads sejam executados.
+
+4 - Como todo processo possui vantagens e desvantagens, o compartilhamento de espaço de endereçamento entre threads de um único processo também, sendo eles:
+
+Vantagens: Compartilhamento do espaço de endereçamento extremamente simples e rápido.
+
+Desvantagens: Os threads de um processo compartilham o mesmo espaço, não há proteção no acesso a memória, possibilitando a alteração de dados de outros a partir de um thread.
+
+5 - a) Não há como saber, não existe uma ordem exata.
+
+b) Sim, é possível.
+
+6 - Para obter os benefícios do uso de threads, uma aplicação deve permitir que partes diferentes do seu código sejam executadas em paralelo de forma independente. O uso de uma arquitetura com múltiplos processadores beneficia a concorrência entre os threads com a possibilidade do paralelismo de execução entre processadores. 
+
+7 - O principal benefício do uso de threads em ambientes cliente-servidor é a melhoria no desempenho da aplicação servidora. Além disso, a comunicação entre os threads no servidor pode ser feita através de mecanismos mais simples e eficientes.
+

@@ -1,0 +1,11 @@
+1- É cpu-bound, porque ele passa apenas pelo processador sem necessidade de dispositivos de I/O.
+
+2- Para fazer a operação de I/O o processador é usado apenas no ínicio e no término, e enquanto a operação de gravação e leitura é feita, os processos continuam acontecendo normalmente.
+
+3- Prio base, tempo de criação e frames são estáticos; Estado, tempo de ucp e pc são dinâmicos.
+
+4- Isso acontece quando o processo termina de ser executado e assume um estado de pronto, para que outro processo possa ser trazido para execução.
+
+5- A fatia do tempo define quanto tempo um processo irá passar na cpu, assim quanto maior for a fatia, mais o processo terá tempo de execução por vez.
+
+6- Isso acontece porque quando um processo vai ser finalizado, é preciso ocorrer um processamento que irá fazer a ação de encerrar o processo, e quando está suspenso não é possível realizar processamentos com esse processo.

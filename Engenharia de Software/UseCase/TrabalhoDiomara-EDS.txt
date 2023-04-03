@@ -1,0 +1,14 @@
+Nome: Vinícius e Gabriel Matheus
+
+1- O objetivo é dispor de várias pequenas equipes(três a oito desenvolvedores cada), ou de programadores individuais trabalhando juntos como uma única e relativamente grande equipe, a fim de construir grandes produtos com uma certa rapidez e ao mesmo possibilitar uma liberdade para que programadores e equipes individuais desenvolvam seus designs e operem quase que autonomamente.
+
+2- Sincronia e estabilização é dividido em três fases de planejamento, Inicia com uma definição dos objetivos do novo produto e das atividades do usuário que serão apoiadas (A Microsoft utiliza um método denominado planejamento baseado em atividades para identificar e priorizar as características a serem construídas, Os gerentes de projeto juntamente com os desenvolvedores escrevem então uma especificação funcional com detalhes suficientes para descrever as características e para desenvolver cronogramas e alocar as equipes. Na próxima fase, a fase de desenvolvimento, essa lista é dividida em três ou quarto partes, cada uma com sua pequena equipe de desenvolvimento, e o cronograma é dividido em subprojetos sequenciais, cada um com seu próprio prazo de entrega ( marco - millestone) . As equipes trabalham paralelamente em um conjunto de características e sincronizam seu trabalho juntando o código e encontrando erros em uma base diária e semanal. Ao final de um subprojeto, isto é, ao alcançar-se um marco, todos os erros são encontrados e consertados, estabilizando assim o produto, antes de se passar para o próximo subprojeto e finalmente para o marco final, que representa a data de entrega. 
+
+3- Planejamento: Ideias baseadas em atividades para identificar e priorizar as características e objetivos a serem construídas.
+Desenvolvimento: Sincronização dos trabalhos juntando o código e encontrando erros em uma base diária e semanal.
+Estabilização: Encontrar todos os erros e conserta-los, estabilizando assim o produto.
+
+4- Envolve tipicamente a análise, especificação, o projeto (design), desenvolvimento, testes e/ou manutenções dos componentes de software e documentação associada. A especificação funcional é o documento que contém o que o sistema deverá processar quando da sua entrega.
+
+5- São os marcos de um projeto, ou seja, os pontos de verificação.
+

@@ -1,0 +1,96 @@
+Avalição SO
+24/05
+Cap 4,5 e 6
+Dissertativas e Multipla Escolha
+
+Cap 4
+-System Call e rotinas do sistema: Rotinas do sistema são o que compõem o núcleo do sistema, elas oferecem serviços para que outras aplicações possam realizar operações próprias do sistema de maneira controlada, essas rotinas por padrão possuem instruções privilegiadas necessitando de modo kernel para funcionar, elas são chamadas por aplicativos através da System Call, que irá verificar se a mesma tem privilégio concedido para chamar tal rotina, o system call irá salvar o contexto atual do processamento nos registradores e alterar para modo kernel, assim a rotina poderá ser executada, após finalizar a rotina o modo de acesso volta para usuário e o contexto anterior é restaurado. As funções se resumem a gerência de processos e threads, gerência de memória, gerência do sistema de arquivos e gerência de dispositivos
+
+-Modos de Acesso: É o controle que o sistema faz das operações que disponiliza para as aplicações, esse controle é feito através dos modos que são: modo usuário, onde apenas instruções não privilegiadas e que não afetam a integridade do sistema são disponíveis para uso, e modo kernel, que trás todos os comandos existentes para uso, podendo assim o programa realizar operações privilegiadas, esse controle dos modos de acesso tem como objetivo garantir a segurança e confiabilidade do sistema.
+
+-Arquiteturas
+.Monolitico: Aplicação formada por vários módulos que são compilados separadamente e depois são conectados, formando um único programa executavel, onde os módulos interagem entre si.
+
+.Arquitetura de Camadas: Na arquitetura de camadas o sistema é divido em vários níveis, os quais tem funções específicas que não podem ser utilizados pelos níveis inferiores, assim quanto mais alto o nível, mais disponibilidade de operações privilegiadas, existem o modo usuário, supervisor, executivo e kernel, dessa maneira é possível isolar funções do SO, além de fornecer uma proteção das camadas mais internas. Também há uma desvantagem nessa arquitetura, um maior número de camadas acaba implicando em um menor desempenho.
+
+.Maquina Virtual: As VMs são modelos que criam um campo intermediário entre hardware e software, podendo criar diversas maquinas virtuais a partir de um mesmo hardware, cada VM tem um sistema operacional próprio, o que permite que vários SOs
+compartilhem uma mesma máquina, mas sem que interfiram uma na outra, assim mesmo que um sistema apresente erros ou até mesmo seja comprometido, os demais não irão sofrer nenhum dano. As VMs trazem vantagens como fácil portabilidade, escalabilidade, facilidade de desenvolvimento e disponibilidade.
+
+.JVM(Java Virtual Machine): É um programa que carrega e executa os aplicativos Java, convertendo os bytecodes em código executável de máquina. A JVM é responsável pelo gerenciamento dos aplicativos, à medida que são executados. Graças à máquina virtual Java, os programas escritos em Java podem funcionar em qualquer plataforma de hardware e software que possua uma versão da JVM, tornando assim essas aplicações independentes da plataforma onde funcionam.
+
+.Microkernel: É uma arquitetura que tem como objetivo tornar o núcleo do SO o menor e mais simples possível, nesse modelo os serviços do sistema são disponíveis como processos, onde cada um é responsável por oferecer um conjunto específico de funções. No cenário do microkernel, as aplicações são consideradas clientes, e quando desejam utilizar algum serviço, fazem uma requisição ao servidor, nessa ação quem realiza a comunicação é o próprio kernel do sistema. Essa arquitetura por trazer um sistema simples e isolado, permite uma boa confiabilidade, escalabilidade, fácil manutenção e portabilidade, as grandes desvantagens do microkernel são a sua dificil implementação e a troca de modo de acesso sempre que existir uma comunicação.
+
+Cap 5
+-Estrutura do processo: Um processo pode ser definido como o ambiente onde um programa é executado. Este ambiente, além das informações sobre a execução, possui também a quantidade de recursos do sistema que cada programa pode utilizar, como o espaço de endereçamento da memória principal, tempo de processador e área em disco. O processo é formado por três partes, conhecidas como contexto de hardware, contexto de software e espaço de endereçamento, que juntos mantêm todas as informações necessárias a execução de um programa.
+
+.Contexto de Hardware: Armazena o conteúdo dos registradores gerais da UCP, além dos especifícos, como program counter, stack pointer e registrador de status, na execução o contexto de hardware está armazenado nos registradores do processador, mas no momento em que o processo perde a UCP, os dados são salvos no contexto de hardware do processo. Esse conceito é essencial para sistemas multiprogramaveis, pois nesse modelo de SO ocorrem interrupções frequentemente, assim os dados podem ser restaurados posteriormente.
+
+.Contexto de Software: Nesse caso são especificados limites e características dos recursos que podem ser alocados pelo processo, como o número máximo de arquivos abertos simultaneamente, prioridade de execução e tamanho de buffer para E/S. Esses dados são definidos normalmente na criação do processo, mas podem ser alteradas durante sua existência. O contexto de software é composto por três grupos de informações sobre o processo: identificação pelo PID(Process Identification) e owner, quotas que definem limites como máximo de buffer ou memória utilizados, e privilégios como prioridade de execução, permissão para alterar outros processos ou a si mesmo, permissões mais avançadas também incluem operações de sistema, como modificação de parametros do SO, desativação do sistema, etc.
+
+.Espaço de endereçamento: É onde está reservado o espaço em mémoria pertecente ao processo, lá ele poderá alocar as informações para do mesmo execução, o espaço de endereçamento é único ao processo, o que significa que deve ser protegido do acesso de processos alheios.
+
+.PCB(Process Control Block): O PCB é a maneira como são implementados os processos, ele é uma estrutura que armazena as informações referentes a contexto de software, contexto de hardware e espaço de endereçamento do processo. Os PCBs de todos os processos ativos residem na memória principal em uma área exclusiva do sistema
+operacional. O tamanho desta área, geralmente, é limitado por um parâmetro do sistema operacional que permite especificar o número máximo de processos que podem ser suportados simultaneamente pelo sistema.
+
+-Estados do processo
+.Running: É o processo que está sendo processado no exato momento pela UCP.
+
+.Ready: Nessa situação o processo está aguardando para ser executado novamente, para que ele volte a UCP, existe uma fila de outros processos que também aguardam para serem processados, a ordem desta fila é definida pelo sistema através de níveis de prioridade e importância dos processos.
+
+.Wait: Quando o processo está nesse estado, ele está esperando por um evento externo ao processamento, como uma operação de E/S ou até um determinado horário, quando  a ação pela qual estava esperando for realizada, o processo será introduzido na fila de espera do Ready, para que seja processado posteriormente.  
+
+-Mudanças de estado do processo
+.Ready->Running: O processo está na lista de espera para execução, quando ele chega ao final da fila, será transfirido para a UCP e será processado.
+
+.Running->Ready: O processo está sendo processado na UCP, quando terminar a operação será transferido de volta a fila dos processos Ready.
+
+.Running->Wait: Como no caso anterior, o processo está sendo processado na UCP,
+mas nesta situação o processo solicita que um evento externo aconteça, como uma operação de E/S, então ele é transferido para o Wait onde irá aguardar a realização do evento.
+
+.Wait->Ready: Aqui o processo aguarda a realização de um evento externo, quando essa operação for concluída, o processo será introduzido de volta a fila de processos no Ready.
+
+.Swap: A técnica conhecida como swapping, na condição citada, retira processos da memória principal (swap out) e os traz de volta (swap in) seguindo critérios de cada sistema operacional. Neste caso, os processos em estados de espera e pronto
+podem estar residentes ou não residentes (outswapped) na memória principal.
+
+-Criação e eliminação de processos
+.Criação(new): Nesse estado o SO já criou o PCB referente ao processo, e o mesmo aguarda para ser introduzida a fila de espera do Ready, como existem limitações de número de processos ativos, pode ser necessário esperar por uma disponibilidade de espaço. 
+
+.Terminado(exit): Quando assume esse estado, o processo não pode ter mais nenhum programa em seu contexto. O processado não é mais considerado ativo e poderá deixar de existir, o término pode acontecer por motivos como fim normal da execução, eliminição por outro processo ou eliminição forçada por falta de recursos.
+
+-Processos independentes: É uma maneira simples de emplementar a concorrência nos sistemas multiprogramaveis. Nesse modelo o processo não tem vínculo com seu criador, cada processo possui seu próprio PCB que contém contexto de hardware, contexto de software e espaço de endereçamento.
+
+-Subprocessos: São processos criados dentro de uma hierarquia, onde o criador é denomido como pai e o subprocesso como filho, o qual pode gerar outras estruturas de subprocesso, assim como os independentes, os subprocessos também possuem o próprio PCB. Nessa implementação existe uma dependência entre pai-filho, caso o processo criador deixe de existir, seus subordinados também são eliminados
+
+-Threads: O uso de processos independentes e subprocessos demanda uma certa quantidade de recursos do sistema e leva um tempo demasiado, na tentativa de aumentar a eficiencia desse processo surgiu a thread. Em um ambiente multithread, um único processo suporta várias threads, evitando grande quantidade de processos, a concorrência nas threads acontece da mesma maneira do que com processos. Cada thread possui seu próprio contexto de hardware, mas compartilham entre si o contexto de software e espaço de endereçamento do processo, esse compartilhamente entre as threads permite simplicidade e rápidez na sua execução. 
+
+-Processos foreground: São processos que permitem a comunicação direta do usuário
+com o processo durante seu processamento. Nesta situação os processos são interativos com os usuários, esta interação acontece através de teclado, mouse e monitor.
+
+-Processos background: São processos em que não existe comunicação com o usuário durante o processamento, eles não são associados a nenhum dispositivo que provém interatividade com o usuário. Processos batch são um exemplo de background.
+
+-Processos do sistema operacional: Nesta situação o SO ou parte dele é implementado através de processos, como no caso da arquitetura microkernel que utiliza intensivamente processos nos serviços do sistema, assim tornando o núcleo menor e mais estável. Alguns serviços que podem ser implementados através de processo são serviços de rede, contabilização do uso de recursos, comunicação de eventos, interface de comandos, etc.
+
+-Processos CPU-bound: Um processo é definido assim quando passa a maior parte do tempo no estado de execução, utilizando o processador ou pronto, nesse caso poucas operações de E/S são realizadas, como em aplicações que majoritariamente realizam cálculos.
+
+-Processos I/O-bound: Um processo é classificado assim quando passa a maior parte do tempo em estado de espera, pois faz um grande número de operações de E/S, processos assim são encontrados em aplicações que tem como base leitura, processamento e gravação de dados.
+
+-Sinais: É um mecanismo que permite nofiticar processos de eventos do sistema operacional ou de outros processos, por exemplo quando o usuário digita CTRL+C no teclado, assim um sinal será enviado ao processo e uma rotina de tratamento será acionada. A  maior parte dos eventos associados a sinais são gerados pelo SO ou pelo hardware, como em exceções, interrupções, limites de quota excedidos, etc..., mas também podem ocorrer de outros processos com propósito de sincronizar suas execuções.
+
+Cap 6
+-Ambiente monothread: Em um ambiente monothread, um processo suporta apenas um programa no seu espaço de endereçamento. Neste ambiente, aplicações concorrentes são implementadas apenas com o uso de múltiplos processos independentes ou subprocessos. A utilização de processos independentes e subprocessos permite dividir uma aplicação em partes que podem trabalhar de forma concorrente. Um exemplo do uso de concorrência pode ser encontrado nas aplicações com interface gráfica, como em um software de gerenciamento de e-mails. Neste ambiente, cada funcionalidade do software implicaria a criação de um novo processo para atendê-la, aumentando o desempenho da aplicação e tornando mais lenta a comunicação.
+
+-Ambiente multithread: Em um ambiente multithread, ou seja, com múltiplos threads, não existe a ideia de programas associados a processos, mas, sim, a threads. O processo, neste ambiente, tem pelo menos um thread de execução, mas pode compartilhar o seu espaço de endereçamento com inúmeros outros threads. No ambiente multithread, cada processo pode responder a várias solicitações concorrentemente ou mesmo simultaneamente, caso haja mais de um processador. A grande vantagem no uso de threads é a possibilidade de minimizar a alocação de recursos do sistema, além de diminuir o overhead na criação, troca e eliminação de processos.A grande diferença entre aplicações monothread e multithread está no uso do espaço de endereçamento. Processos independentes e subprocessos possuem espaços de endereçamento individuais e protegidos, enquanto threads compartilham o espaço dentro de um mesmo processo. Esta característica permite que o compartilhamento de dados entre threads de um mesmo processo seja mais simples e rápida, se comparado a ambientes monothread.
+
+-Arquitetura e implementação: Existem diferentes abordagens na implementação dos pacotes de threads em um sistema operacional, o que influenciará no desempenho, na concorrência e na modularidade das aplicações multithread. Threads podem ser oferecidos por uma biblioteca de rotinas fora do núcleo do sistema operacional (modo
+usuário), pelo próprio núcleo do sistema (modo kernel), uma combinação de ambos (modo híbrido) ou por um modelo conhecido como scheduler activations.
+
+.TMU: TMU possuem uma grande limitação, pois o sistema operacional gerencia cada processo como se existisse apenas um único thread. No momento em que um thread chama uma rotina do sistema que o coloca em estado de espera (rotina bloqueante), todo o processo é colocado no estado de espera, mesmo havendo outros threads prontos para execução. Para contornar esta limitação, a biblioteca tem que possuir rotinas que substituam as rotinas bloqueantes por outras que não possam causar o bloqueio de um
+thread (rotinas não bloqueantes). Todo este controle é transparente para o usuário e para o sistema operacional.
+
+.TMK: Threads em modo kernel (TMK) são implementados diretamente pelo núcleo do sistema operacional, através de chamadas a rotinas do sistema que oferecem todas as funções de gerenciamento e sincronização. O sistema operacional sabe da existência de cada thread e pode escaloná-los individualmente. No caso de múltiplos processadores, os threads de um mesmo processo podem ser executados simultaneamente. O grande problema para pacotes em modo kernel é o seu baixo desempenho. Enquanto nos pacotes em modo usuário todo tratamento é feito sem a ajuda do sistema operacional, ou seja, sem a mudança do modo de acesso (usuário-kernel-usuário), pacotes em modo kernel utilizam chamadas a rotinas do sistema e, consequentemente, várias mudanças no modo de acesso.
+
+.Hibrido: A arquitetura de threads em modo híbrido combina as vantagens de threads implementados em modo usuário (TMU) e modo kernel (TMK). Um processo pode ter vários TMKs e, por sua vez, um TMK pode ter vários TMUs. O núcleo do sistema reconhece os TMKs e pode escaloná-los individualmente. UmTMU pode ser executado em um TMK, em um determinado momento, e no instante seguinte ser executado em outro. O programador desenvolve a aplicação em termos de TMUs e especifica quantos TMKs estão associados
+ao processo. Os TMU são mapeados em TMK enquanto o processo está sendo executado. O programador pode utilizar apenas TMKs, TMUs ou uma combinação de ambos, a desvantagem é que esta arquitetura herda os problemas de ambos TMK e TMU.
+
+.Scheduler Activations: Os problemas apresentados no pacote de threads em modo híbrido existem devido à falta de comunicação entre os threads em modo usuário e modo kernel. O modelo ideal deveria utilizar as facilidades do pacote em modo kernel com o desempenho e a flexibilidade do modo usuário. A arquitetura Scheduler Activations implementa exatamente a maneira de alcançar um melhor desempenho, ela evita as mudanças de modos de acesso desnecessárias (usuário-kernel-usuário). Caso um thread utilize uma chamada ao sistema que o coloque no estado de espera, não é necessário que o kernel seja ativado, bastando que a própria biblioteca em modo usuário escalone outro thread. Isto é possível porque a biblioteca em modo usuário e o kernel se comunicam e trabalham de forma cooperativa. Cada camada implementa seu escalonamento de forma independente, porém trocando informações quando necessário.
+

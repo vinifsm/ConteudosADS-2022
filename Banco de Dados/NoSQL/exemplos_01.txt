@@ -1,0 +1,25 @@
+CRIA CHAVE PRIMÁRIA EM UMA COLEÇÃO
+db.createCollection("cliente")
+db.cliente.createIndex({"codigo":1},{unique:true})
+
+CRIA E ARMAZENA DADOS DO CLIENTE EM APENAS UMA COLEÇÃO
+
+db.cliente_tudo.insertMany([
+{ _id: "001", nome: "Fulano de Tal", nascimento: "07/12/1971", situacao: "A",
+contato: 
+        {celular: "(18)99555-1213", email: "fulano@gmail.com"},
+endereco: 
+         {rua: "Rua das Flores - 200", CEP: "19.800-000", cidade: "Assis", uf: "SP"}
+},
+{ _id: "002", nome: "Beltrano da Silva", nascimento: "03/05/1978", situacao: "A",
+contato: 
+        {celular: "(18)99666-1415", email: "beltrano@gmail.com"},
+endereco: 
+         {rua: "Rua dos Palmares - 450", CEP: "19.800-001", cidade: "Assis", uf: "SP"}
+},
+{ _id: "003", nome: "Ciclano de Souza", nascimento: "10/11/1988", situacao: "D",
+contato: 
+        {celular: "(18)99777-1617", email: "ciclano@gmail.com"},
+endereco: 
+         {rua: "Rua Pitangueiras - 1230", CEP: "45.800-002", cidade: "Londrina", uf: "PR"}
+}]);

@@ -1,0 +1,53 @@
+db.createCollection("Jogador")
+db.jogador.insertOne({
+    user_id:"Leonel Messi"
+    nascimento: new Date("1990-05-17"),
+    salario:1000000.0
+})
+
+db.jogador.insertMany([
+    {user_id:"Leonel Messi",
+    nascimento: new Date("1990-05-17"),
+    salario:1000000.00},
+    
+    {user_id:"Neymar Júnior",
+    nascimento: new Date("1988-11-10"),
+    salario:800000.00},
+    
+    {user_id:"Cristiano Ronaldo",
+    nascimento: new Date("1985-08-25"),
+    salario:900000.00},
+    
+    {user_id:"Thiago Silva",
+    nascimento: new Date("1986-07-14"),
+    salario:400000.00}
+    ]);
+
+db.jogador.updateOne(
+ {user_id:"Leonel Messi" },
+ { $set: { país:"Argentina" } }
+);
+
+db.jogador.updateOne(
+ {user_id:"Neymar Júnior" },
+ { $set: { país:"Brasil" } }
+);
+
+db.jogador.updateOne(
+ {user_id:"Cristiano Ronaldo" },
+ { $set: { país:"Portugal" } }
+);
+
+db.jogador.updateOne(
+ {user_id:"Thiago Silva" },
+ { $set: { país:"Brasil" } }
+);
+
+db.jogador.updateMany(
+{},
+{$mul:{salario: 1.1}}
+);
+
+
+
+

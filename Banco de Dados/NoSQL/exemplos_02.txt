@@ -1,0 +1,36 @@
+CRIA CHAVE PRIMÁRIA EM UMA COLEÇÃO
+
+db.createCollection("cliente")
+db.cliente.createIndex({"_id":1},{unique:true})
+
+
+CRIA E ARMAZENA DADOS DO CLIENTE SEPARADO EM TRÊS COLEÇÕES
+
+EXEMPLO CRIAR COLEÇÃO E JÁ INSERIR VÁRIOS DOCUMENTOS
+
+db.cliente.insertMany([
+{ _id: "001", nome: "Fulano de Tal", nascimento: "07/12/1971", situacao: "A" },
+{ _id: "002", nome: "Beltrano da Silva", nascimento: "03/05/1978", situacao: "A" },
+{ _id: "003", nome: "Ciclano de Souza", nascimento: "10/11/1988", situacao: "D" }
+]);
+
+CRIA CONTATOS DA COLEÇÃO CLIENTE IDENTIFICANDO PELO _id
+
+db.contato.insertOne(
+{ _id: "001", celular: "(18)99555-1213", email: "fulano@gmail.com"});
+db.contato.insertOne(
+{ _id: "002", celular: "(18)99666-1415", email: "beltrano@gmail.com"});
+db.contato.insertOne(
+{ _id: "003", celular: "(18)99777-1617", email: "ciclano@gmail.com"});
+
+CRIA ENDEREÇOS DA COLEÇÃO CLIENTE IDENTIFICANDO PELO _id
+
+db.endereco.insertOne(
+{ _id: "001", rua: "Rua das Flores - 200", CEP: "19.800-000", cidade: "Assis", uf: "SP"});
+db.endereco.insertOne(
+{ _id: "002", rua: "Rua dos Palmares - 450", CEP: "19.800-001", cidade: "Assis", uf: "SP"});
+db.endereco.insertOne(
+{ _id: "003", rua: "Rua Pitangueiras - 1230", CEP: "45.800-002", cidade: "Londrina", uf: "PR"});
+
+
+

@@ -1,0 +1,9 @@
+Ferramenta CASE
+
+Nome: Eclipse
+
+O que faz: Eclipse é uma IDE para desenvolvimento Java, que suporta várias outras linguagens a partir de plugins como C/C++, PHP, Python, etc. Ele foi feito em Java e segue o modelo open source de desenvolvimento de software.
+
+Preço: Gratuito
+
+Fabricante: O projeto Eclipse foi iniciado na IBM que desenvolveu a primeira versão do produto e doou-o como software livre para a comunidade. Hoje quem desenvolve o software é a Eclipse Foundation.
